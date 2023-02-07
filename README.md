@@ -33,3 +33,13 @@ std::scoped_lock is similar to lock_guard, but we can have several mutexes. It i
 
 ## Atomics
 If a shared resource is very simple (i.e primitive / trivially copyable), std::atomic can be used rather than mutexes / lock guards.
+
+## Asynchronous Programming
+A type of concurrency, where execution happends independently of the 'main' flow. It is concurrency without any sort of ordering or synchronization. In C++, we use std::async, std::promise and std::future for async programming.
+
+std::async and std::future is used when we want to use a function asynchronously which returns a value. When we try to 'get' the value from the std::future, the thread blocks if the value we try to return from the async function has not been computed yet.
+
+std::async has a std::launch_policy parameter : 
+    
+* async : Launch the thread and start executing the task asynchronously. \
+* deferred : Launch the thread only when result is requested (using std::future::get()).
